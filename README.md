@@ -102,4 +102,23 @@
   make -j12 V=s
   ```
 
-  编译完成后输出路径：bin/targets。
+  编译完成后输出路径：bin/targets
+  
+  下载固件到MAC桌面：
+
+  ```bash
+  scp -r bin/targets/ipq807x/generic mac@192.168.10.204:/Users/mac/Desktop
+  ```
+  
+  从虚拟机下载固件到桌面：
+
+  ```bash
+  scp -r parallels@192.168.10.230:/home/parallels/openwrt/bin/targets/ipq807x/generic /Users/mac/Desktop
+  ```
+  
+  上传openclash内核到路由器：
+
+  ```bash
+  scp /Volumes/共享磁盘/Redmi-AX6自己编译/openclash/* root@192.168.10.3:/etc/openclash/core
+  ```
+  
