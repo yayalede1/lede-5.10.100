@@ -21,7 +21,7 @@
 3. 下载源代码，更新 feeds 并选择配置/   [Redmi-AX6-config配置文件](./AX6config配置文件.config)。
 
    ```bash
-   git clone https://github.com/caopeng19911002/lede-for-XaioMi openwrt
+   git clone https://github.com/yaya131/lede-for-XaioMi openwrt
    cd openwrt
    sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
    sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
@@ -80,20 +80,6 @@
   make -j12 V=s
   ```
   
-  二次编译旧版openclash0.44.29：
-
-  ```bash
-  cd openwrt
-  make clean
-  git pull
-  ./scripts/feeds update -a
-  rm -rf feeds/kenzo/luci-app-openclash && git clone https://github.com/caopeng19911002/openclash-0.44.29.git feeds/kenzo/luci-app-openclash && ./scripts/feeds install -a
-  make defconfig
-  make -j8 download V=s
-  make -j12 V=s
-  ```
-   
-   
   如果需要重新配置：
 
   ```bash
@@ -116,9 +102,21 @@
   scp -r parallels@192.168.10.230:/home/parallels/openwrt/bin/targets/ipq807x/generic /Users/mac/Desktop
   ```
   
+  下载openclash内核到MAC桌面：
+
+  ```bash
+  scp -r root@192.168.10.3:/etc/openclash/core /Users/mac/Desktop
+  ```
+  
   上传openclash内核到路由器：
 
   ```bash
-  scp /Volumes/共享磁盘/Redmi-AX6自己编译/openclash/* root@192.168.10.3:/etc/openclash/core
+  scp /Volumes/共享磁盘/Redmi-AX6自己编译/openclash/* root@192.168.10.1:/etc/openclash/core
+  ```
+  
+  清除ssh缓存：
+
+  ```bash
+  rm -rf ~/.ssh/known_hosts
   ```
   
